@@ -1,4 +1,3 @@
-````markdown
 # DaeTRIP - Daejeon Tourist Route Recommendation System
 
 This repository contains the code for the DaeTRIP system, a tourist route recommendation system for Daejeon, South Korea.
@@ -20,7 +19,6 @@ Follow these steps to set up the project:
 git clone https://github.com/youngjuene/RecMap.git
 cd RecMap
 ```
-````
 
 2. Create a new Conda environment:
 
@@ -77,7 +75,3 @@ If you'd like to contribute to this project, please follow these steps:
 ## License
 
 This project is licensed under the MIT License.
-
-```
-
-```
