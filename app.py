@@ -10,14 +10,7 @@ st.title('DaeTRIP')
 # User Inputs
 transportation_type = st.selectbox('Select Transportation Type', ['Walking', 'Public Transport', 'Car'])
 max_time = st.slider('Maximum Time for Transportation (minutes)', min_value=10, max_value=60, step=10)
-selected_sites = st.multiselect('Select Touristic Sites', ['Daejeon Expo Park',
-                                                           'Yuseong Hot Springs',
-                                                           'National Science Museum',
-                                                           'Hanbat Arboretum',
-                                                           'Daejeon Museum of Art',
-                                                           'Gyejoksan Mountain',
-                                                           'Ppuri Park',
-                                                           'Daejeon O-World'])
+selected_sites = st.multiselect('Select Touristic Sites', ['Daejeon Expo Park', 'Yuseong Hot Springs', 'National Science Museum', 'Hanbat Arboretum', 'Daejeon Museum of Art', 'Gyejoksan Mountain', 'Ppuri Park', 'Daejeon O-World'])
 
 
 
