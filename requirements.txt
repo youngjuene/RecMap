@@ -3,3 +3,5 @@ folium
 streamlit_folium
 geopy
 pandas
+osmnx
+networkx
