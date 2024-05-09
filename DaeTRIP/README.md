@@ -6,7 +6,7 @@ This repository contains the code for the DaeTRIP system, a tourist route recomm
 
 Before running the code, make sure you have the following prerequisites:
 
-- Python 3.7 or higher
+- Python 3.9 or higher
 - conda 
 
 ## Setup
