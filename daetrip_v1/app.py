@@ -49,7 +49,6 @@ for i, question in enumerate(questions):
         question,
         min_value=1,
         max_value=5,
-        value=3,
         key=f"question_{i}",
     )
     responses.append(response)
