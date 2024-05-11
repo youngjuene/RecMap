@@ -14,78 +14,64 @@ from prettymapp.geo import get_aoi
 from prettymapp.settings import STYLES
 
 st.set_page_config(
-    page_title="prettymapp", page_icon="🖼️", initial_sidebar_state="collapsed"
+    page_title="daetripp", page_icon="🖼️", initial_sidebar_state="collapsed"
 )
-st.markdown("# Prettymapp")
 
 # Add survey questions with sliders
-st.write("---")
+# st.write("---")
 st.markdown("## Traveler's Type Survey")
-tech_savvy_question = st.slider(
+
+questions = [
     "I prefer travel experiences that incorporate technology and efficiency.",
-    min_value=1,
-    max_value=5,
-    value=2,
-    key="tech_savvy_question",
-)
-community_question = st.slider(
     "I enjoy participating in local events and engaging with the community when traveling.",
-    min_value=1,
-    max_value=5,
-    value=3,
-    key="community_question",
-)
-leisure_question = st.slider(
     "I seek practical and convenient leisure activities during my travels.",
-    min_value=1,
-    max_value=5,
-    value=2,
-    key="leisure_question",
-)
-personalization_question = st.slider(
-    "I value personalized recommendations based on my preferences and past behaviors.",
-    min_value=1,
-    max_value=5,
-    value=4,
-    key="personalization_question",
-)
+    "I am open to trying new and adventurous activities during my trips.",
+    "I prioritize comfort and relaxation over exploring new places.",
+    "I value cultural immersion and learning about local traditions.",
+    "I am willing to splurge on high-end accommodations and dining experiences.",
+]
 
-# Define weights for each question
-tech_savvy_weight = 0.4
-community_weight = 0.3
-leisure_weight = 0.2
-personalization_weight = 0.1
+# Create sliders for each question
+responses = []
+for i, question in enumerate(questions):
+    response = st.slider(
+        question,
+        min_value=1,
+        max_value=5,
+        value=3,
+        key=f"question_{i}",
+    )
+    responses.append(response)
 
-# Calculate weighted scores for each question
-tech_savvy_score = tech_savvy_question * tech_savvy_weight
-community_score = community_question * community_weight
-leisure_score = leisure_question * leisure_weight
-personalization_score = personalization_question * personalization_weight
-
-# Determine the traveler type based on the highest weighted score
-traveler_scores = {
-    "Tech-savvy": tech_savvy_score,
-    "Community-focused": community_score,
-    "Practical Leisure Seeker": leisure_score,
+# Define weights for each question and traveler type
+weights = {
+    "Tech-savvy": [0.20, -0.10, -0.05, 0.15, -0.10, -0.05, 0.15],
+    "Community-focused": [-0.10, 0.20, -0.05, 0.05, -0.05, 0.20, 0.05],
+    "Practical Leisure Seeker": [-0.05, -0.05, 0.20, -0.10, 0.20, -0.05, 0.15],
 }
+
+# Calculate scores for each traveler type
+traveler_scores = {
+    traveler_type: round(sum(response * weight for response, weight in zip(responses, weights[traveler_type])), 1)
+    for traveler_type in weights
+}
+
+# Determine the traveler type based on the highest score
 traveler_type = max(traveler_scores, key=traveler_scores.get)
 
-# Adjust the traveler type based on the personalization score
-if personalization_score > 0.3:
-    traveler_type = "Personalized " + traveler_type
-
 # Customize map style based on traveler type
-if traveler_type.endswith("Practical Leisure Seeker"):
+if traveler_type == "Practical Leisure Seeker":
     style = "Peach"
-    radius = 500
-elif traveler_type.endswith("Community-focused"):
+    radius = 2000
+elif traveler_type == "Community-focused":
     style = "Flannel"
-    radius = 1000
+    radius = 2000
 else:  # Tech-savvy
     style = "Citrus"
-    radius = 1500
+    radius = 2000
     
-st.write(f"You are a {traveler_type} traveler!")
+st.write(f"Based on your responses, you seem to be a {traveler_type} traveler!")
+st.write(traveler_scores)
 
 # Use the fixed coordinates for Daejeon, South Korea
 address = "Daejeon, South Korea"
