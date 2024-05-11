@@ -15,6 +15,10 @@ from prettymapp.plotting import Plot
 from prettymapp.osm import get_osm_geometries
 from prettymapp.settings import STYLES
 
+import osmnx as ox
+import networkx as nx
+import folium
+from streamlit_folium import folium_static
 
 @st.cache_data(
     show_spinner=False, hash_funcs={Polygon: lambda x: json.dumps(x.__geo_interface__)}
@@ -25,10 +29,51 @@ def st_get_osm_geometries(aoi):
     return df
 
 
+# @st.cache_data(show_spinner=False)
+# def st_plot_all(_df: GeoDataFrame, **kwargs):
+#     """Wrapper to enable streamlit caching for package function"""
+#     fig = Plot(_df, **kwargs).plot_all()
+#     return fig
 @st.cache_data(show_spinner=False)
-def st_plot_all(_df: GeoDataFrame, **kwargs):
+def st_plot_all(_df: GeoDataFrame, recommended_sites, **kwargs):
     """Wrapper to enable streamlit caching for package function"""
     fig = Plot(_df, **kwargs).plot_all()
+    
+    # Create a Folium map centered around the center coordinates
+    center_lat = (_df.total_bounds[1] + _df.total_bounds[3]) / 2
+    center_lon = (_df.total_bounds[0] + _df.total_bounds[2]) / 2
+    map_obj = folium.Map(location=[center_lat, center_lon], zoom_start=13)
+    
+    # Add map pins for recommended sites
+    for site, coords in recommended_sites.items():
+        folium.Marker(location=[coords['lat'], coords['lon']], popup=site).add_to(map_obj)
+    
+    # Connect road networks between recommended sites
+    G = ox.graph_from_bbox(_df.total_bounds[3], _df.total_bounds[1], _df.total_bounds[2], _df.total_bounds[0], network_type='drive')
+    site_nodes = []
+    for site, coords in recommended_sites.items():
+        nearest_node = ox.distance.nearest_nodes(G, coords['lon'], coords['lat'])
+        site_nodes.append(nearest_node)
+    
+    route_map = folium.Map(location=[center_lat, center_lon], zoom_start=13)
+    
+    for i in range(len(site_nodes)):
+        if i < len(site_nodes) - 1:
+            try:
+                route = nx.shortest_path(G, site_nodes[i], site_nodes[i + 1], weight='length')
+                route_coords = [(G.nodes[node]['y'], G.nodes[node]['x']) for node in route]
+                folium.PolyLine(route_coords, color='dodgerblue', weight=5, opacity=1).add_to(route_map)
+            except nx.NetworkXNoPath:
+                print(f"No path found between {site_nodes[i]} and {site_nodes[i + 1]}. Skipping route.")
+        
+        # Add markers for each site
+        site = list(recommended_sites.keys())[i]
+        coords = recommended_sites[site]
+        folium.Marker(location=[coords['lat'], coords['lon']], popup=site).add_to(route_map)
+    
+    # Display the route map in Streamlit
+    folium_static(route_map)
+    
     return fig
 
 
