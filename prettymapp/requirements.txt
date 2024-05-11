@@ -1,0 +1,9 @@
+streamlit
+folium 
+streamlit_folium
+geopy
+pandas
+osmnx
+networkx
+streamlit-image-select==0.6.0
+prettymapp
