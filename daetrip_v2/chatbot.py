@@ -29,7 +29,7 @@ def initialize_session_state():
         llm = OpenAI(
             temperature=0,
             # https://platform.openai.com/api-keys
-            openai_api_key=st.secrets["sk-proj-1XYd0jyt6A4dhtKWuf80T3BlbkFJbUujYYsE0Qeur5Oeordo"],
+            openai_api_key=st.secrets["openai-api"],
             model_name="gpt-3.5-turbo-0125"
         )
         st.session_state.conversation = ConversationChain(
