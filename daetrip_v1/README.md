@@ -9,3 +9,6 @@ git clone https://github.com/youngjuene/RecMap.git
 cd RecMap/daetrip_v1
 docker build -t streamlit39 .; docker run -p 8501:8501 streamlit39
 ```
+
+# TODO
+[-] chatbot
