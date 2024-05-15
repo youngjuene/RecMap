@@ -9,6 +9,9 @@ from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationSummaryMemory
 import streamlit.components.v1 as components
 
+from config import OPENAI_API_KEY
+openai_api_key = OPENAI_API_KEY
+
 @dataclass
 class Message:
     """Class for keeping track of a chat message."""
@@ -29,7 +32,7 @@ def initialize_session_state():
         llm = OpenAI(
             temperature=0,
             # https://platform.openai.com/api-keys
-            openai_api_key=st.secrets["openai-api"],
+            openai_api_key=st.secrets[openai_api_key],
             model_name="gpt-3.5-turbo-0125"
             #gpt-4o
         )
@@ -66,10 +69,7 @@ with chat_placeholder:
         div = f"""
 <div class="chat-row 
     {'' if chat.origin == 'ai' else 'row-reverse'}">
-    <img class="chat-icon" src="app/static/{
-        'ai_icon.png' if chat.origin == 'ai' 
-                      else 'user_icon.png'}"
-         width=32 height=32>
+    <img class="chat-icon" src="app/static/{'ai_icon.png' if chat.origin == 'ai' else 'user_icon.png'}" width=32 height=32>
     <div class="chat-bubble
     {'ai-bubble' if chat.origin == 'ai' else 'human-bubble'}">
         &#8203;{chat.message}
