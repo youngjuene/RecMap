@@ -31,6 +31,7 @@ def initialize_session_state():
             # https://platform.openai.com/api-keys
             openai_api_key=st.secrets["openai-api"],
             model_name="gpt-3.5-turbo-0125"
+            #gpt-4o
         )
         st.session_state.conversation = ConversationChain(
             llm=llm,
