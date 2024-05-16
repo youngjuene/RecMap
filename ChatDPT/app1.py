@@ -11,23 +11,19 @@ import streamlit.components.v1 as components
 
 openai.api_key = st.secrets["openai_api_key"]
 
-
 st.set_page_config(
     page_title="daetripp", page_icon="🖼️", initial_sidebar_state="collapsed"
 )
-
-# Add survey questions with sliders
 st.write("---")
 st.markdown("# DaeTRIP Welcome Survey")
+
 # Define the questions
 questions = [
     "I prefer travel experiences that incorporate technology and efficiency.",
     "I enjoy participating in local events and engaging with the community when traveling.",
-    "I seek practical and convenient leisure activities during my travels.",
     "I am open to trying new and adventurous activities during my trips.",
     "I prioritize comfort and relaxation over exploring new places.",
-    "I value cultural immersion and learning about local traditions.",
-    "I am willing to splurge on high-end accommodations and dining experiences.",
+    "I value cultural immersion and learning about local traditions."
 ]
 
 # Create sliders for each question
@@ -47,7 +43,7 @@ prompt = ""
 # Submit button
 if st.button("Submit"):
     # Collect the responses and create a prompt
-    prompt = "Based on the following responses to travel preference questions, please provide an analysis of my traveler type and recommend relevant touristic sites or activities specifically in Daejeon, South Korea:\n\n"
+    prompt = "Based on the five responses to the travel preference questions answered on a scale of 1 to 5, please provide a holistic analysis of my traveler type with a singular, well-rounded description. Recommend three to four relevant touristic sites or activities specifically in Daejeon, South Korea, and provide explanations for how these recommendations align with the traveler type description. Additionally, present the recommendations as a connected single-day itinerary. Finally, present the information in an organized markdown format with concise details and proper usage of bold fonts for better readability.:\n"
     for i, (question, response) in enumerate(zip(questions, responses)):
         prompt += f"{i+1}. {question} (Response: {response})\n"
 
@@ -59,6 +55,45 @@ if st.button("Submit"):
     st.write(summary)
     prompt = summary
 
+# new part
+import re
+# Define a dictionary that maps keywords to relevant travel site URLs
+keyword_urls = {
+    "cultural": "https://daejeontour.co.kr/en/index.do",
+    "nature": "https://www.visit.daejeon.go.kr/eng/attractions/natural_resources.asp",
+    "food": "https://www.visit.daejeon.go.kr/eng/attractions/food.asp",
+    "adventure": "https://www.visit.daejeon.go.kr/eng/attractions/activities.asp",
+    "luxury": "https://www.visit.daejeon.go.kr/eng/attractions/accommodation.asp",
+    # Add more keywords and URLs as needed
+}
+
+# After displaying the summary
+if prompt:
+    # Extract the recommended sites or activities from the summary
+    recommended_sites = re.findall(r"[\w\s]+?\.", summary)
+
+    # Create link buttons for each recommended site or activity
+    for site in recommended_sites:
+        site_name = site.strip(".")
+        site_keywords = site_name.lower().split()
+
+        for keyword in keyword_urls.keys():
+            if keyword in site_keywords:
+                url = keyword_urls[keyword]
+                st.link_button(f"Visit {site_name}", url)
+                break
+        else:
+            # If no matching keyword is found, use a default URL
+            default_url = "https://www.visit.daejeon.go.kr/eng/attractions/index.asp"
+            st.link_button(f"Visit {site_name}", default_url)
+
+    # Add link buttons for general categories
+    st.link_button("Cultural Sites", keyword_urls["cultural"])
+    st.link_button("Nature Sites", keyword_urls["nature"])
+    st.link_button("Food & Dining", keyword_urls["food"])
+    st.link_button("Adventure Activities", keyword_urls["adventure"])
+    st.link_button("Luxury Accommodations", keyword_urls["luxury"])
+    
 @dataclass
 class Message:
     """Class for keeping track of a chat message."""
@@ -98,12 +133,10 @@ def on_click_callback():
 load_css()
 initialize_session_state()
 
-st.title("Hello DaeTRIPer 🌠")
-
+st.title("ChatDPT 🤖")
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
-credit_card_placeholder = st.empty()
-
+token_usage_placeholder = st.empty()
 
 with chat_placeholder:
     for chat in st.session_state.history:
@@ -135,13 +168,9 @@ with prompt_placeholder:
         on_click=on_click_callback,
     )
 
-credit_card_placeholder.caption(f"""
+token_usage_placeholder.caption(f"""
     Used {st.session_state.token_count} tokens.
 """)
-# credit_card_placeholder.caption(f"""
-#     Used {st.session_state.token_count} tokens \n
-#     Debug Langchain conversation: {st.session_state.conversation.memory.buffer}
-# """)
 
 components.html("""
 <script>
