@@ -1,6 +1,6 @@
 # DaeTrip - Discover Daejeon Differently
 
-DaeTrip is a simple app that helps you explore Daejeon, South Korea in a new way. Just answer a few questions about what you like, and DaeTrip will suggest places to visit and things to do.
+DaeTrip is a simple app that helps you explore infamous no-fun city, Daejeon(KR), in a new way. Just answer a few questions about what you like, and DaeTrip will suggest places to visit and things to do.
 
 ## Features
 
@@ -31,4 +31,4 @@ Got ideas? Found a bug? Let us know or send a pull request.
 
 ## License
 
-DaeTrip is open-source under the MIT License. Feel free to use and modify the code.
+Open-source under the MIT License.
