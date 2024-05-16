@@ -1,3 +1,5 @@
+import os
+import openai
 from dataclasses import dataclass
 from typing import Literal
 import streamlit as st
@@ -6,6 +8,56 @@ from langchain.callbacks import get_openai_callback
 from langchain.chains import ConversationChain
 from langchain.chains.conversation.memory import ConversationSummaryMemory
 import streamlit.components.v1 as components
+
+openai.api_key = st.secrets["openai_api_key"]
+
+
+st.set_page_config(
+    page_title="daetripp", page_icon="🖼️", initial_sidebar_state="collapsed"
+)
+
+# Add survey questions with sliders
+st.write("---")
+st.markdown("# DaeTRIP Welcome Survey")
+# Define the questions
+questions = [
+    "I prefer travel experiences that incorporate technology and efficiency.",
+    "I enjoy participating in local events and engaging with the community when traveling.",
+    "I seek practical and convenient leisure activities during my travels.",
+    "I am open to trying new and adventurous activities during my trips.",
+    "I prioritize comfort and relaxation over exploring new places.",
+    "I value cultural immersion and learning about local traditions.",
+    "I am willing to splurge on high-end accommodations and dining experiences.",
+]
+
+# Create sliders for each question
+responses = []
+for i, question in enumerate(questions):
+    response = st.slider(
+        question,
+        min_value=1,
+        max_value=5,
+        key=f"question_{i}_slider",  # Unique key for each slider
+    )
+    responses.append(response)
+
+# Initialize prompt
+prompt = ""
+
+# Submit button
+if st.button("Submit"):
+    # Collect the responses and create a prompt
+    prompt = "Based on the following responses to travel preference questions, please provide an analysis of my traveler type and recommend relevant touristic sites or activities specifically in Daejeon, South Korea:\n\n"
+    for i, (question, response) in enumerate(zip(questions, responses)):
+        prompt += f"{i+1}. {question} (Response: {response})\n"
+
+    # Send the prompt to the OpenAI API using the ConversationChain
+    result = st.session_state.conversation.invoke(prompt)
+    summary = result['response']
+
+    # Display the summary
+    st.write(summary)
+    prompt = summary
 
 @dataclass
 class Message:
@@ -46,7 +98,7 @@ def on_click_callback():
 load_css()
 initialize_session_state()
 
-st.title("Hello ChatDPT 🤖")
+st.title("Hello DaeTRIPer 🌠")
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
@@ -73,7 +125,7 @@ with prompt_placeholder:
     cols = st.columns((6, 1))
     cols[0].text_input(
         "Chat",
-        value="you're finally awake",
+        value="Among these places, where should I visit first?",
         label_visibility="collapsed",
         key="human_prompt",
     )
@@ -84,9 +136,12 @@ with prompt_placeholder:
     )
 
 credit_card_placeholder.caption(f"""
-    Used {st.session_state.token_count} tokens \n
-    Debug Langchain conversation: {st.session_state.conversation.memory.buffer}
+    Used {st.session_state.token_count} tokens.
 """)
+# credit_card_placeholder.caption(f"""
+#     Used {st.session_state.token_count} tokens \n
+#     Debug Langchain conversation: {st.session_state.conversation.memory.buffer}
+# """)
 
 components.html("""
 <script>
