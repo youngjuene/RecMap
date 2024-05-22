@@ -15,8 +15,8 @@ DaeTrip is a simple app that helps you explore infamous no-fun city, Daejeon(KR)
 1. Clone the repo
 2. Make a `.streamlit/secrets.toml` file with your OpenAI key
 3. Build the Docker image: `docker build -t daetrip .`
-4. Run the app: `docker run -p 8501:8501 daetrip`
-5. Open `http://localhost:8501` in your browser
+4. Run the app: `docker run -p 80:80 daetrip`
+5. Open `http://localhost` in your browser
 
 ## Using DaeTrip
 
