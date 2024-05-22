@@ -25,6 +25,13 @@ DaeTrip is a simple app that helps you explore infamous no-fun city, Daejeon(KR)
 3. Use the map to explore
 4. Have fun in Daejeon!
 
+## Weekend TODO
+- [ ] route recommendation as output
+- [ ] summarized text description about recommended sites
+- [ ] pretty map
+- [ ] chatgdp
+- [ ] instagram hashtag
+
 ## Contributing
 
 Got ideas? Found a bug? Let us know or send a pull request.
