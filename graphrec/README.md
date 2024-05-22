@@ -1,1 +1,0 @@
-# graph embeddings are interesting
