@@ -228,3 +228,10 @@ components.html("""
     });
 </script>
 """, height=0, width=0)
+
+
+
+st.markdown("---")
+st.write(
+    "Share on social media with the hashtag [#DaeTRIP](https://www.instagram.com/daejeontourism/) !"
+)
