@@ -3,3 +3,11 @@ langchain
 langchain-openai
 langchain-community
 openai
+geopandas
+shapely
+matplotlib
+prettymapp
+osmnx
+networkx
+folium
+streamlit-folium

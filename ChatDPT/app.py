@@ -5,12 +5,21 @@ from typing import Literal
 import pandas as pd
 import streamlit as st
 from langchain_openai import ChatOpenAI
-from langchain.callbacks import get_openai_callback
 from langchain.chains import ConversationChain
+from langchain_community.callbacks.manager import get_openai_callback
 from langchain.chains.conversation.memory import ConversationSummaryMemory
 import streamlit.components.v1 as components
 
 openai.api_key = st.secrets["openai_api_key"]
+
+from utils import (
+    st_get_osm_geometries,
+    st_plot_all,
+    get_colors_from_style,
+    gdf_to_bytesio_geojson,
+)
+from prettymapp.geo import get_aoi
+from prettymapp.settings import STYLES
 
 st.set_page_config(
     page_title="DaeTrip - Discover Daejeon's Hidden Gems",
