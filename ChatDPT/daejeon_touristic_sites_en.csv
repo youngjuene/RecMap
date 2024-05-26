@@ -1,0 +1,82 @@
+Category,Name,Type,Address,lat,lon
+Others,Atomic Burger Ship,Others,"60, Gwanjeodong-ro 105beon-gil, Seo-gu, Daejeon",36.2991,127.3450
+Major Attractions,Yuseong Hot Spring,Major Attractions,"574, Bongmyeong-dong, Yuseong-gu, Daejeon",36.3561,127.3265
+Major Attractions,Eunhaeng-dong Cultural Street,Major Attractions,"45-10, Eunhaeng-dong, Jung-gu, Daejeon",36.3273,127.4225
+Major Attractions,Daejeon Culture and Arts Center,Major Attractions,"135, Dunsan-daero, Seo-gu, Daejeon",36.3517,127.3782
+Major Attractions,Dongchundang,Major Attractions,"80, Dongchundang-ro, Daedeok-gu, Daejeon",36.4305,127.4204
+Major Attractions,Daejeon Dullesan-gil,Major Attractions,"18-1, Munhwa-dong, Jung-gu, Daejeon",36.3111,127.4051
+Major Attractions,Hyo Culture Village,Major Attractions,"47, Ppurigongwon-ro, Jung-gu, Daejeon",36.3336,127.4052
+Major Attractions,Daecheonghoban,Major Attractions,"333, Chudong, Dong-gu, Daejeon",36.4724,127.4640
+Major Attractions,Expo Science Park,Major Attractions,"85, Expo-ro, Yuseong-gu, Daejeon",36.3779,127.3831
+Major Attractions,Ppuri Park,Major Attractions,"79, Ppurigongwon-ro, Jung-gu, Daejeon",36.3331,127.4077
+Major Attractions,O-World,Major Attractions,"70, Sajeong Park-ro, Jung-gu, Daejeon",36.2846,127.4182
+Major Attractions,Gyejoksan Hwangtot-gil,Major Attractions,"453-1, Jangdong, Daedeok-gu, Daejeon",36.4131,127.4713
+Ecological Attractions,Yuseong Hot Spring Foot Bath Experience,Ecological Attractions,"574, Bongmyeong-dong, Yuseong-gu, Daejeon",36.3561,127.3265
+Major Attractions,Jangtaesan Natural Recreation Forest,Major Attractions,"461, Jangan-ro, Seo-gu, Daejeon",36.3104,127.3228
+Ecological Attractions,Daecheongho Obaekri-gil,Ecological Attractions,"618-136, Daecheong-ro, Daedeok-gu, Daejeon",36.4588,127.4451
+Major Attractions,Hanbat Arboretum,Major Attractions,"169, Dunsan-daero, Seo-gu, Daejeon",36.3580,127.3811
+Ecological Attractions,Geumgang LOHAS Eco Park,Ecological Attractions,"167, Daecheong-ro, Daedeok-gu, Daejeon",36.4491,127.4272
+Science Attractions,KAIST,Science Attractions,"291, Daehak-ro, Yuseong-gu, Daejeon",36.3741,127.3568
+Science Attractions,Expo Science Park and World Expo Memorial Hall,Science Attractions,"480, Daedeok-daero, Yuseong-gu, Daejeon",36.3765,127.3831
+Science Attractions,Korea Research Institute of Standards and Science,Science Attractions,"267, Gajeong-ro, Yuseong-gu, Daejeon",36.3839,127.3725
+Science Attractions,Electronics and Telecommunications Research Institute,Science Attractions,"218, Gajeong-ro, Yuseong-gu, Daejeon",36.3808,127.3673
+Science Attractions,National Science Museum,Science Attractions,"481, Daedeok-daero, Yuseong-gu, Daejeon",36.3772,127.3840
+Science Attractions,Korea Institute of Oriental Medicine,Science Attractions,"1672, Yuseong-daero, Yuseong-gu, Daejeon",36.3539,127.2971
+Science Attractions,Daejeon Observatory,Science Attractions,"213-48, Gwahak-ro, Yuseong-gu, Daejeon",36.3975,127.3696
+Science Attractions,Korea Astronomy and Space Science Institute,Science Attractions,"776, Daedeok-daero, Yuseong-gu, Daejeon",36.3998,127.3748
+Science Attractions,Korea Aerospace Research Institute,Science Attractions,"169-84, Gwahak-ro, Yuseong-gu, Daejeon",36.3908,127.3877
+Science Attractions,Korea Institute of Machinery and Materials,Science Attractions,"156, Gajeongbuk-ro, Yuseong-gu, Daejeon",36.3871,127.3550
+Cultural Attractions,Lee Ungno Museum,Cultural Attractions,"157, Dunsan-daero, Seo-gu, Daejeon",36.3541,127.3790
+Cultural Attractions,Daejeon Museum of Art,Cultural Attractions,"155, Dunsan-daero, Seo-gu, Daejeon",36.3539,127.3786
+Cultural Attractions,Yeojin Buddhist Art Museum,Cultural Attractions,"624, Expo-ro, Yuseong-gu, Daejeon",36.3843,127.3872
+Cultural Attractions,Hannam University Museum,Cultural Attractions,"70, Hannam-ro, Daedeok-gu, Daejeon",36.3405,127.4267
+Cultural Attractions,Daejeon Prehistoric Museum,Cultural Attractions,"126, Noeun-dong-ro, Yuseong-gu, Daejeon",36.3796,127.3173
+Cultural Attractions,Chungnam National University Museum,Cultural Attractions,"99, Daehak-ro, Yuseong-gu, Daejeon",36.3636,127.3439
+Cultural Attractions,Hanbat Education Museum,Cultural Attractions,"96, Uam-ro, Dong-gu, Daejeon",36.2973,127.4616
+Science Attractions,Geological Museum,Science Attractions,"124, Gwahak-ro, Yuseong-gu, Daejeon",36.3800,127.3750
+Science Attractions,Currency Museum,Science Attractions,"80-67, Gwahak-ro, Yuseong-gu, Daejeon",36.3840,127.3640
+Cultural Attractions,Daejeon Municipal Museum,Cultural Attractions,"398, Doan-daero, Yuseong-gu, Daejeon",36.3670,127.3350
+Historical Sites,Gyejoksanseong Fortress,Historical Sites,"79-70, Sandi-ro, Daedeok-gu, Daejeon",36.4083,127.4675
+Historical Sites,Hoedek Hyanggyo Daeseongjeon,Historical Sites,"126, Daejeon-ro 1397beon-an-gil, Daedeok-gu, Daejeon",36.3511,127.5087
+Historical Sites,Daejeon Sodaeheon Hoyeonjae House,Historical Sites,"70, Dongchundang-ro, Daedeok-gu, Daejeon",36.4288,127.4189
+Historical Sites,Dunsan Prehistoric Site Park,Historical Sites,"9, Daedeok-daero 317beon-gil, Seo-gu, Daejeon",36.3443,127.3871
+Historical Sites,Dosan Seowon,Historical Sites,"8, Namseon-ro, Seo-gu, Daejeon",36.3005,127.3839
+Historical Sites,Bongsoru Pavilion,Historical Sites,"29, Bongsoru-ro, Jung-gu, Daejeon",36.3321,127.4274
+Historical Sites,Danjae Sin Chaeho's Birthplace,Historical Sites,"47, Danjae-ro 229beon-gil, Jung-gu, Daejeon",36.3222,127.4048
+Historical Sites,Changgye Sungjuelsa Temple,Historical Sites,"67, Daedunsan-ro 137beon-gil, Jung-gu, Daejeon",36.3094,127.4138
+Historical Sites,Yuhoidang Pavilion,Historical Sites,"32-20, Unnam-ro 85beon-gil, Jung-gu, Daejeon",36.3175,127.4239
+Historical Sites,Gosan Temple Daeungjeon Hall,Historical Sites,"205, Daejeon-ro 316beon-gil, Dong-gu, Daejeon",36.2805,127.4783
+Historical Sites,Uam Historic Park,Historical Sites,"53, Chungjeong-ro, Dong-gu, Daejeon",36.2930,127.4593
+Historical Sites,Munchungsa Temple,Historical Sites,"44, Dongbu-ro 73beon-gil, Dong-gu, Daejeon",36.2933,127.4470
+Historical Sites,Songaedang House,Historical Sites,"60, Gyejoksan-ro 17beon-gil, Daedeok-gu, Daejeon",36.4053,127.4642
+Historical Sites,Ssangcheongdang Hall,Historical Sites,"17, Ssangcheongdang-ro, Daedeok-gu, Daejeon",36.4386,127.4314
+Historical Sites,Jinjam Hyanggyo Daeseongjeon,Historical Sites,"67, Gyochon-ro, Yuseong-gu, Daejeon",36.3627,127.3331
+Historical Sites,Sunghyeon Seowon,Historical Sites,"36, Expo-ro 251beon-gil, Yuseong-gu, Daejeon",36.3712,127.3868
+Historical Sites,Suun Gyocheondan Shrine,Historical Sites,"80, Jaun-ro 245beon-gil, Yuseong-gu, Daejeon",36.3563,127.2997
+Ecological Attractions,Sandi Village Ecological Park Campground,Ecological Attractions,"190, Sandi-ro, Daedeok-gu, Daejeon",36.4138,127.4808
+Ecological Attractions,LOHAS Family Park Campground,Ecological Attractions,"200, Daecheong-ro 424beon-gil, Daedeok-gu, Daejeon",36.4583,127.4458
+Ecological Attractions,Sangso Auto Camping Site,Ecological Attractions,"748, Sannae-ro, Dong-gu, Daejeon",36.2679,127.4970
+Ecological Attractions,Ppuri Park Campground,Ecological Attractions,"79, Ppurigongwon-ro, Jung-gu, Daejeon",36.3331,127.4077
+Ecological Attractions,Jangtaesan Natural Recreation Forest Campground,Ecological Attractions,"461, Jangan-ro, Seo-gu, Daejeon",36.3104,127.3228
+Historical Sites,Mireukwon Temple,Historical Sites,"135-2, Masandong, Dong-gu, Daejeon",36.3078,127.4750
+Historical Sites,Garden Study of Joseon - Song Siyeol's Namganjeongsa,Historical Sites,"53, Chungjeong-ro, Dong-gu, Daejeon",36.2930,127.4593
+Historical Sites,Old Daejeon Prison,Historical Sites,"16-11, Jungchon-dong, Jung-gu, Daejeon",36.3261,127.4119
+Major Attractions,Isadong Folk Village,Major Attractions,"102-21, Isa-ro, Dong-gu, Daejeon",36.2756,127.4828
+Major Attractions,Old Chungnam Provincial Office and Modern History Exhibition Hall,Major Attractions,"101, Jungang-ro, Jung-gu, Daejeon",36.3280,127.4248
+Cultural Attractions,Daejeon Station and Nostalgic Garak Noodles,Cultural Attractions,"Jungang-ro 218, Dong-gu, Daejeon",36.3310,127.4325
+Cultural Attractions,Daejeon National Cemetery,Cultural Attractions,"251, Hyeonchungwon-ro, Yuseong-gu, Daejeon",36.3815,127.2955
+Cultural Attractions,Cariyong,Cultural Attractions,"100, Hyecheon-ro, Seo-gu, Daejeon",36.3448,127.3813
+Others,Sungsimdang Bakery,Others,"15, Daejong-ro 480beon-gil, Jung-gu, Daejeon",36.3268,127.4236
+Others,Yuseong 5-Day Market,Others,"24, Yuseong-daero 730beon-gil, Yuseong-gu, Daejeon",36.3432,127.3401
+Cultural Attractions,Daejeon Arts Center,Cultural Attractions,"135, Dunsan-daero, Seo-gu, Daejeon",36.3517,127.3782
+Cultural Attractions,Observatory Exploration Trail,Cultural Attractions,"213-48, Gwahak-ro, Yuseong-gu, Daejeon",36.3975,127.3696
+Cultural Attractions,Jungang Market,Cultural Attractions,"15, Daejong-ro 480beon-gil, Jung-gu, Daejeon",36.3268,127.4236
+Others,Daejeon Jungang Market,Others,"15-1, Eunhaeng-dong, Jung-gu, Daejeon",36.3276,127.4231
+Others,Jungang-ro Underground Shopping Center,Others,"Jungang-ro 199, Jung-gu, Daejeon",36.3278,127.4237
+Others,Durumi Rest Area,Others,"96, Dunsannam-ro, Seo-gu, Daejeon",36.3519,127.3816
+Others,Daejeon Station Garak Noodles,Others,"215, Jungang-ro, Dong-gu, Daejeon",36.3312,127.4318
+Others,Wolpyeong Park,Others,"12-1, Wolpyeong-dong, Seo-gu, Daejeon",36.3624,127.3640
+Others,Jungni-dong Public Terminal,Others,"405, Gyejok-ro, Dong-gu, Daejeon",36.3056,127.4595
+Others,Daejeon O-World,Others,"70, Sajeong Park-ro, Jung-gu, Daejeon",36.2846,127.4182
+Others,Daejeon Stream,Others,"117, Dunsan-daero, Seo-gu, Daejeon",36.3467,127.3762
+Cultural Attractions,Hyundai Premium Outlet Daejeon,,"123, Techno jungang-ro, Yuseong-gu, Daejeon",36.4162,127.3948

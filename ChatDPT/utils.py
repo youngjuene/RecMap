@@ -49,7 +49,9 @@ def st_plot_all(_df: GeoDataFrame, recommended_sites, **kwargs):
         folium.Marker(location=[coords['lat'], coords['lon']], popup=site).add_to(map_obj)
     
     # Connect road networks between recommended sites
-    G = ox.graph_from_bbox(_df.total_bounds[3], _df.total_bounds[1], _df.total_bounds[2], _df.total_bounds[0], network_type='drive')
+    bbox = (_df.total_bounds[3], _df.total_bounds[1], _df.total_bounds[2], _df.total_bounds[0])
+    G = ox.graph_from_bbox(bbox=bbox, network_type='drive')
+
     site_nodes = []
     for site, coords in recommended_sites.items():
         nearest_node = ox.distance.nearest_nodes(G, coords['lon'], coords['lat'])

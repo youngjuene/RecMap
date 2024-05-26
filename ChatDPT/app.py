@@ -13,7 +13,7 @@ import streamlit.components.v1 as components
 import re
 
 
-set_verbose(True)
+set_verbose(False)
 openai.api_key = st.secrets["openai_api_key"]
 
 from utils import (
@@ -110,7 +110,7 @@ for i, question in enumerate(questions):
 
 # Initialize prompt
 prompt = ""
-daejeon_sites_csv = pd.read_csv('daejeon_touristic_sites.csv')
+daejeon_sites_csv = pd.read_csv('daejeon_touristic_sites_en.csv')
 
 # Traveler type configuration
 traveler_type_config = {
@@ -129,27 +129,27 @@ def extract_traveler_type(response):
 
 # Function to extract recommended sites from OpenAI response
 def extract_recommended_sites(response):
-    pattern = r"Recommended Sites:\n(.*?)(?=\n\n|$)"
+    pattern = r"\*\*Recommended Sites:\*\*\n(.*?)(?=\n\n|$)"
     match = re.search(pattern, response, re.DOTALL)
     if match:
-        sites = match.group(1).split("\n")
-        return [site.strip().strip("- ") for site in sites if site.strip()]
+        sites_text = match.group(1).strip()
+        sites = [site.strip().lstrip('- ').strip() for site in sites_text.split("\n") if site.strip()]
+        return sites
     return []
 
 # Function to calculate center coordinates for recommended sites
 def calculate_center_coordinates(sites):
-    latitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['Latitude'].values[0]) for site in sites]
-    longitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['Longitude'].values[0]) for site in sites]
+    latitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['lat'].values[0]) for site in sites]
+    longitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['lon'].values[0]) for site in sites]
     center_lat = sum(latitudes) / len(latitudes)
     center_lon = sum(longitudes) / len(longitudes)
     return center_lat, center_lon
 
 # Submit button
 if st.button("Discover My Perfect Trip"):
-    # Collect the responses and create a prompt    
-    prompt = f"Based on the six responses to the travel preference questions answered on a scale of 1 (strongly disagree) to 5 (strongly agree), please provide a holistic analysis of my traveler type with a singular, well-rounded description. Recommend three to four relevant touristic sites or activities specifically in Daejeon, South Korea, by referring to the following CSV data:\n\n{daejeon_sites_csv.to_string(index=False)}\n\nProvide a hyper-personalized analysis by explaining how these recommendations align with the traveler type description. Additionally, present the recommendations as a connected single-day itinerary, including estimated travel times between each location based on the preferred mode of transportation (public or private). Finally, present the information in an organized markdown format with concise details and proper usage of bold fonts for better readability, using the following format:\n\nTraveler Type: <traveler_type>\n\nAnalysis: <analysis>\n\nRecommended Sites:\n- <site1>\n- <site2>\n- <site3>\n\nItinerary: <itinerary>\n"
-
-
+    # Collect the responses and create a prompt        
+    prompt = f"Based on the six responses to the travel preference questions answered on a scale of 1 (strongly disagree) to 5 (strongly agree), please classify my traveler type into one of the following categories: Tech-savvy, Community-focused, or Practical Leisure Seeker. Provide a brief explanation for your classification.\n\nThen, recommend three to four relevant touristic sites or activities specifically in Daejeon, South Korea, by selecting them from the following CSV data:\n\n{daejeon_sites_csv.to_string(index=False)}\n\nEnsure that the recommended sites are exactly matched with the names provided in the CSV data. Do not include any sites that are not present in the CSV.\n\nFinally, present the recommendations as a connected single-day itinerary, including estimated travel times between each location based on the preferred mode of transportation (public or private). Present the information in an organized markdown format with concise details and proper usage of bold fonts for better readability, using the following format:\n\n**Traveler Type:** <traveler_type>\n\n**Explanation:** <explanation>\n\n**Recommended Sites:**\n- <site1>\n- <site2>\n- <site3>\n\n**Itinerary:** <itinerary>\n"
+    
     for i, (question, response) in enumerate(zip(questions, responses)):
         prompt += f"{i+1}. {question} (Response: {response})\n"
 
@@ -164,11 +164,8 @@ if st.button("Discover My Perfect Trip"):
     # Parse the OpenAI response to extract traveler type and recommended sites
     traveler_type = extract_traveler_type(summary)
     recommended_sites = extract_recommended_sites(summary)
-
-    print("Traveler Type:", traveler_type)
-    print("Recommended Sites:", recommended_sites)
     
-    if filtered_sites:
+    if traveler_type and recommended_sites:
         # Retrieve map style, color, and size based on traveler type
         style = traveler_type_config.get(traveler_type, {}).get("style", "Citrus")
         radius = traveler_type_config.get(traveler_type, {}).get("radius", 4000)
@@ -178,8 +175,8 @@ if st.button("Discover My Perfect Trip"):
 
         if filtered_sites:
             # Calculate center coordinates for filtered recommended sites
-            latitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['Latitude'].values[0]) for site in filtered_sites]
-            longitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['Longitude'].values[0]) for site in filtered_sites]
+            latitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['lat'].values[0]) for site in filtered_sites]
+            longitudes = [float(daejeon_sites_csv[daejeon_sites_csv['Name'] == site]['lon'].values[0]) for site in filtered_sites]
             center_lat = sum(latitudes) / len(latitudes)
             center_lon = sum(longitudes) / len(longitudes)
             coordinates = (center_lat, center_lon)
@@ -213,15 +210,15 @@ if st.button("Discover My Perfect Trip"):
                     "bg_color": "white"
                 }
                 st.write("## Your Recommended Sites")
-                recommended_sites_dict = {site: daejeon_sites_csv[daejeon_sites_csv['Name'] == site][['Latitude', 'Longitude']].to_dict(orient='records')[0] for site in recommended_sites if site in daejeon_sites_csv['Name'].values}
+                recommended_sites_dict = {site: daejeon_sites_csv[daejeon_sites_csv['Name'] == site][['lat', 'lon']].to_dict(orient='records')[0] for site in recommended_sites if site in daejeon_sites_csv['Name'].values}
                 fig = st_plot_all(_df=df, recommended_sites=recommended_sites_dict, **config)
                 st.write("---")
                 st.write("## Share your Instagram-Ready Trip Map!")
                 st.pyplot(fig, pad_inches=0, bbox_inches="tight", transparent=True, dpi=300)
         else:
-            st.write("Unable to calculate center coordinates for the recommended sites.")
+            st.write(f"{recommended_sites}\nNone of the recommended sites are found in the Daejeon touristic sites data.")
     else:
-        st.write("Unable to extract traveler type and recommended sites from the response.")
+        st.write(f"{traveler_type}\n{recommended_sites}\nUnable to extract traveler type and recommended sites from the response.")
 
 keyword_urls = {
     "Tourist Attractions": "https://daejeontour.co.kr/en/board.do?menuIdx=234",
